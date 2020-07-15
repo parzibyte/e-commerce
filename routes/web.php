@@ -16,3 +16,4 @@ Route::get("/", function () {
     return redirect()->route("categories.index");
 });
 Route::resource("categories", "CategoriesController");
+Route::resource("products", "ProductController");

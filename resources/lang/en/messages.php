@@ -13,4 +13,11 @@ return [
     "confirm_action" => "Please confirm",
     "category_updated" => "Category updated",
     "category_deleted" => "Category deleted",
+    "products" => "Products",
+    "add_product" => "Add product",
+    "price" => "Price",
+    "stock" => "Stock",
+    "category" => "Category",// I know i should use pluralize
+    "product_created" => "Product created",
+    "pictures" => "Pictures",
 ];
