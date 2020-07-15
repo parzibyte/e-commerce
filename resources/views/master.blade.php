@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="{{env("APP_NAME")}}">
     <meta name="author" content="Parzibyte">
-    <title>@yield("titulo") - {{env("APP_NAME")}}</title>
+    <title>@yield("title") - {{env("APP_NAME")}}</title>
     <link href="{{url("/css/bootstrap.min.css")}}" rel="stylesheet">
     <link href="{{url("/css/all.min.css")}}" rel="stylesheet">
     <style>
@@ -27,7 +27,7 @@
     <div class="collapse navbar-collapse" id="menu">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Hola</a>
+                <a class="nav-link" href="{{route("categories.index")}}">{{__("messages.categories")}}</a>
             </li>
         </ul>
     </div>
@@ -43,7 +43,7 @@
     });
 </script>
 <main class="container-fluid">
-    @yield("contenido")
+    @yield("content")
 </main>
 <footer class="px-2 py-2 fixed-bottom bg-dark">
     <span class="text-muted">Gestión de tienda en línea (e-commerce) en Laravel.
@@ -58,5 +58,16 @@
         </a>
     </span>
 </footer>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        (document.querySelectorAll(".btn-confirm-action") || []).forEach(e => {
+            e.addEventListener("click", function (event) {
+                if (!confirm(("{{__("messages.confirm_action")}}"))) {
+                    event.preventDefault();
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

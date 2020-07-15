@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('productos.productos_create');
+Route::get("/", function () {
+    return redirect()->route("categories.index");
 });
+Route::resource("categories", "CategoriesController");
