@@ -21,4 +21,5 @@ return [
     "product_created" => "Product created",
     "pictures" => "Pictures",
     "please_validate" => "Please, validate the following errors",
+    "product_deleted" => "Product deleted",
 ];
