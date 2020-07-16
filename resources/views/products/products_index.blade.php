@@ -16,6 +16,7 @@
             <tr>
                 <th>{{__("messages.name")}}</th>
                 <th>{{__("messages.description")}}</th>
+                <th>{{__("messages.category")}}</th>
                 <th>{{__("messages.edit")}}</th>
                 <th>{{__("messages.delete")}}</th>
             </tr>
@@ -23,10 +24,9 @@
             <tbody>
             @foreach($products as $product)
                 <tr>
-                    <td>{{$product->name}}
-                        {{$product->pictures}}
-                    </td>
+                    <td>{{$product->name}} </td>
                     <td>{{$product->description}}</td>
+                    <td>{{$product->category->name}}</td>
                     <td>
                         <a class="btn btn-warning" href="{{route("products.edit", $product)}}">
                             <i class="fa fa-edit"></i>
