@@ -42,9 +42,10 @@
                 <div class="form-group">
                     <label for="pictures">{{__("messages.pictures")}}</label>
                     <br>
-                    <input accept="image/jpeg,image/png" id="pictures" type="file" multiple>
+                    <input name="pictures[]" accept="image/jpeg,image/png" id="pictures" type="file" multiple>
                 </div>
                 @include("notification")
+                @include("form_errors")
                 <button class="btn btn-success">{{__("messages.save")}}</button>
                 <a class="btn btn-primary" href="{{route("products.index")}}">{{__("messages.go_back")}}</a>
             </form>

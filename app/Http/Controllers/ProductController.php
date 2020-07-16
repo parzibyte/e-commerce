@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Http\Requests\StoreProduct;
 use App\Product;
+use App\ProductPicture;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -39,9 +41,20 @@ class ProductController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProduct $request)
     {
-        (new Product($request->input()))->saveOrFail();
+        $product = new Product($request->input());
+        $product->saveOrFail();
+        foreach ($request->file("pictures") as $picture) {
+            $fullPath = $picture->store(env("PICTURES_DIRECTORY"));
+            $basename = basename($fullPath);
+            $picture = new ProductPicture();
+            $picture->fill([
+                "product_id" => $product->id,
+                "name" => $basename
+            ]);
+            $picture->saveOrFail();
+        }
         return redirect()->route("products.index")->with("message", __("messages.product_created"));
     }
 

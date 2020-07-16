@@ -23,7 +23,9 @@
             <tbody>
             @foreach($products as $product)
                 <tr>
-                    <td>{{$product->name}}</td>
+                    <td>{{$product->name}}
+                        {{$product->pictures}}
+                    </td>
                     <td>{{$product->description}}</td>
                     <td>
                         <a class="btn btn-warning" href="{{route("products.edit", $product)}}">
