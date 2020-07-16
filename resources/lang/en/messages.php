@@ -22,4 +22,7 @@ return [
     "pictures" => "Pictures",
     "please_validate" => "Please, validate the following errors",
     "product_deleted" => "Product deleted",
+    "edit_product" => "Edit product",
+    "add_pictures" => "Add pictures",
+    "picture_deleted" => "Picture deleted",
 ];

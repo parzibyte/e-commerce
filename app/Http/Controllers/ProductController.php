@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProduct;
 use App\Product;
 use App\ProductPicture;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -45,16 +46,7 @@ class ProductController extends Controller
     {
         $product = new Product($request->input());
         $product->saveOrFail();
-        foreach ($request->file("pictures") as $picture) {
-            $fullPath = $picture->store(env("PICTURES_DIRECTORY"));
-            $basename = basename($fullPath);
-            $picture = new ProductPicture();
-            $picture->fill([
-                "product_id" => $product->id,
-                "name" => $basename
-            ]);
-            $picture->saveOrFail();
-        }
+        $this->storePictures($request, $product->id);
         return redirect()->route("products.index")->with("message", __("messages.product_created"));
     }
 
@@ -77,7 +69,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view("products.products_edit", [
+            "product" => $product,
+            "categories" => Category::all(),
+        ]);
     }
 
     /**
@@ -89,7 +84,10 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product->fill($request->input());
+        $product->saveOrFail();
+        $this->storePictures($request, $product->id);
+        return redirect()->route("products.index")->with("message", __("messages.product_updated"));
     }
 
     /**
@@ -100,7 +98,35 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        $this->deletePictures($product);
         $product->delete();
         return redirect()->route("products.index")->with("message", __("messages.product_deleted"));
+    }
+
+    private function deletePictures(Product $product)
+    {
+        $picturesController = new ProductPicturesController();
+        foreach ($product->pictures as $picture) {
+            $picturesController->deletePictureFromFilesystem($picture->name);
+        }
+    }
+
+    private function storePictures(Request $request, $productId)
+    {
+        if (!$request->file("pictures")) {
+            return;
+        }
+        foreach ($request->file("pictures") as $picture) {
+            $fullPath = $picture->store(config("project.pictures_directory"), [
+                "disk" => "public",
+            ]);
+            $basename = basename($fullPath);
+            $picture = new ProductPicture();
+            $picture->fill([
+                "product_id" => $productId,
+                "name" => $basename
+            ]);
+            $picture->saveOrFail();
+        }
     }
 }

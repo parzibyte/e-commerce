@@ -42,7 +42,7 @@
                 <div class="form-group">
                     <label for="pictures">{{__("messages.pictures")}}</label>
                     <br>
-                    <input name="pictures[]" accept="image/jpeg,image/png" id="pictures" type="file" multiple>
+                    <input required name="pictures[]" accept="image/jpeg,image/png" id="pictures" type="file" multiple>
                 </div>
                 @include("notification")
                 @include("form_errors")
