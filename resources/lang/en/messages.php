@@ -25,4 +25,9 @@ return [
     "edit_product" => "Edit product",
     "add_pictures" => "Add pictures",
     "picture_deleted" => "Picture deleted",
+    "store" => "Store",
+    "all" => "All",
+    "search" => "Search",
+    "filter" => "Filter",
+    "details" => "Details",
 ];

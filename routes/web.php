@@ -19,3 +19,4 @@ Route::resource("categories", "CategoriesController");
 Route::resource("products", "ProductController");
 Route::resource("product_pictures", "ProductPicturesController")->only(["destroy",
 ]);
+Route::resource("store", "StoreController");

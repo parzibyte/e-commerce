@@ -32,6 +32,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{route("products.index")}}">{{__("messages.products")}}</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route("store.index")}}">{{__("messages.store")}}</a>
+            </li>
         </ul>
     </div>
 </nav>
