@@ -4,5 +4,6 @@ return [
     See more: https://stackoverflow.com/questions/30982441/laravel-5-0-env-returns-null-during-concurrent-requests
     */
     'pictures_directory' => 'pictures',
+    'products_per_page' => 10,
 
 ];

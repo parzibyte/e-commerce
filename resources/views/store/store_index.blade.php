@@ -7,16 +7,18 @@
                 <div class="row">
                     <div class="col-12 col-md-3">
                         <label for="category">{{__("messages.category")}}</label>
-                        <select required name="category" id="category" class="form-control">
-                            <option value="-1">{{__("messages.all")}}</option>
+                        <select name="category" id="category" class="form-control">
+                            <option {{$categoryId == -1 ? 'selected' : ''}} value="-1">{{__("messages.all")}}</option>
                             @foreach($categories as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                <option
+                                    {{$category->id == $categoryId ? 'selected': ''}} value="{{$category->id}}">{{$category->name}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="col-12 col-md-7 mb-2">
                         <label for="search">{{__("messages.search")}}</label>
-                        <input required id="search" placeholder="{{__("messages.search")}}" name="search" type="text"
+                        <input value="{{$search}}" id="search" placeholder="{{__("messages.search")}}"
+                               name="search" type="text"
                                class="form-control">
                     </div>
                     <div class="col-12 col-md-1">
@@ -49,5 +51,10 @@
                 </div>
             </div>
         @endforeach
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {{$products->links()}}
+        </div>
     </div>
 @endsection
