@@ -22,7 +22,7 @@
                     <div class="col-12 col-md-1">
                         <label for="#">‏‏‎ ‎</label>
                         <br>
-                        <button type="submit" class="btn btn-success">{{__("messages.filter")}}</button>
+                        <button type="submit" class="btn btn-primary">{{__("messages.filter")}}</button>
                     </div>
                 </div>
             </form>
@@ -31,16 +31,20 @@
     </div>
     <div class="row">
         @foreach($products as $product)
-            <div class="col-12 col-md-4 col-lg-3 mb-2 card-group">
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-2 card-group">
                 <div class="card">
                     <img class="card-img-top" src="{{$product->pictures[0]->getPath()}}"
                          alt="{{$product->name}} picture">
                     <div class="card-body">
                         <h5 class="card-title">{{$product->name}}</h5>
-                        <p class="card-text">{{$product->description}}</p>
+                        <p class="card-text">{{Str::limit($product->description)}}</p>
                     </div>
                     <div class="card-footer">
-                        <a class="btn btn-success" href="#">{{__("messages.details")}}</a>
+                        <h3>${{number_format($product->price, 2)}}</h3>
+                        <a class="btn btn-info" href="#">{{__("messages.details")}}</a>
+                        &nbsp;
+                        <a class="btn btn-success" href="#"><i
+                                class="fa fa-cart-plus"></i>&nbsp;{{__("messages.add_to_cart")}}</a>
                     </div>
                 </div>
             </div>

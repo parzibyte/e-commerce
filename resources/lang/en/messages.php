@@ -30,4 +30,5 @@ return [
     "search" => "Search",
     "filter" => "Filter",
     "details" => "Details",
+    "add_to_cart" => "Add to cart",
 ];
