@@ -62,7 +62,7 @@
                     <div class="col-auto mb-3">
                         <div class="card" style="width: 18rem;">
                             <img
-                                src="{{asset("storage".  DIRECTORY_SEPARATOR . config("project.pictures_directory") . DIRECTORY_SEPARATOR . $picture->name)}}"
+                                src="{{$picture->getPath()}}"
                                 alt="{{$product->name}} picture"
                                 class=" img-fluid">
                             <div class="card-body">
