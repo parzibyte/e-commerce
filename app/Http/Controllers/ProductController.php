@@ -8,6 +8,7 @@ use App\Product;
 use App\ProductPicture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -45,6 +46,8 @@ class ProductController extends Controller
     public function store(StoreProduct $request)
     {
         $product = new Product($request->input());
+        $uniqid = uniqid();
+        $product->slug = Str::of($product->name)->slug("-")->limit(255 - mb_strlen($uniqid) - 1)->append("-", $uniqid);
         $product->saveOrFail();
         $this->storePictures($request, $product->id);
         return redirect()->route("products.index")->with("message", __("messages.product_created"));
@@ -53,12 +56,13 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Product $product
+     * @param \App\Product $request
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Request $request, string $slug)
     {
-        //
+        $product = Product::where("slug", "=", $slug)->limit(1)->first();
+        return view("products.products_detail", ["product" => $product]);
     }
 
     /**

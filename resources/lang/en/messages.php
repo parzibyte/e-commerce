@@ -31,4 +31,7 @@ return [
     "filter" => "Filter",
     "details" => "Details",
     "add_to_cart" => "Add to cart",
+    "see_cart" => "See cart",
+    "available_count" => "Available",
+    "quantity" => "Quantity",
 ];

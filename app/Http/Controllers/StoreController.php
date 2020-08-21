@@ -8,6 +8,19 @@ use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
+
+    public function addToCart(Product $product, Request $request)
+    {
+        $cart = [];
+        if (session("cart")) {
+            $cart = session("cart");
+        }
+        $product->quantity = $request->post("quantity");
+        array_push($cart, $product);
+        session(["cart" => $cart]);
+        return redirect()->back()->with("message", __("messages.added_to_cart"));
+    }
+
     /**
      * Display a listing of the resource.
      *

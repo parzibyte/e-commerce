@@ -3,6 +3,7 @@
 @section("content")
     <div class="row">
         <div class="col-12">
+            @include("notification")
             <form action="#" method="get">
                 <div class="row">
                     <div class="col-12 col-md-3">
@@ -28,7 +29,6 @@
                     </div>
                 </div>
             </form>
-            @include("notification")
         </div>
     </div>
     <div class="row">
@@ -38,15 +38,13 @@
                     <img class="card-img-top" src="{{$product->pictures[0]->getPath()}}"
                          alt="{{$product->name}} picture">
                     <div class="card-body">
-                        <h5 class="card-title">{{$product->name}}</h5>
+                        <a href="{{$product->getAbsoluteUrl()}}" class="card-title h5">{{$product->name}}</a>
                         <p class="card-text">{{Str::limit($product->description)}}</p>
                     </div>
                     <div class="card-footer">
                         <h3>${{number_format($product->price, 2)}}</h3>
-                        <a class="btn btn-info" href="#">{{__("messages.details")}}</a>
-                        &nbsp;
-                        <a class="btn btn-success" href="#"><i
-                                class="fa fa-cart-plus"></i>&nbsp;{{__("messages.add_to_cart")}}</a>
+                        <a class="btn btn-success w-100"
+                           href="{{$product->getAbsoluteUrl()}}">{{__("messages.details")}}</a>
                     </div>
                 </div>
             </div>

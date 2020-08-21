@@ -6,8 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ["category_id", "name", "description", "price", "stock",
+    protected $fillable = ["category_id", "name", "description", "price", "stock", "slug"
     ];
+
+    public function getAbsoluteUrl()
+    {
+        return route("product_detail", ["slug" => $this->slug]);
+    }
 
     public function pictures()
     {

@@ -16,7 +16,9 @@ Route::get("/", function () {
     return redirect()->route("categories.index");
 });
 Route::resource("categories", "CategoriesController");
-Route::resource("products", "ProductController");
+Route::resource("products", "ProductController")->except("show");
 Route::resource("product_pictures", "ProductPicturesController")->only(["destroy",
 ]);
 Route::resource("store", "StoreController");
+Route::post("/add_product_to_cart/{product}", "StoreController@addToCart")->name("add_product_to_cart");
+Route::get("/{slug}", "ProductController@show")->name("product_detail");

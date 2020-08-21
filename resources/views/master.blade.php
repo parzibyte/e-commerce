@@ -8,6 +8,7 @@
     <title>@yield("title") - {{env("APP_NAME")}}</title>
     <link href="{{url("/css/bootstrap.min.css")}}" rel="stylesheet">
     <link href="{{url("/css/all.min.css")}}" rel="stylesheet">
+    <link href="{{url("/css/style.css")}}" rel="stylesheet">
     <style>
         body {
             padding-top: 70px;
@@ -36,6 +37,15 @@
                 <a class="nav-link" href="{{route("store.index")}}">{{__("messages.store")}}</a>
             </li>
         </ul>
+        @if(session("cart"))
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="btn btn-success h2" href="{{route("store.index")}}">{{__("messages.see_cart")}}&nbsp;
+                        <span class="badge badge-light">{{count(session("cart"))}}</span>
+                    </a>
+                </li>
+            </ul>
+        @endif
     </div>
 </nav>
 <script type="text/javascript">
