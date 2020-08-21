@@ -9,6 +9,8 @@
     <link href="{{url("/css/bootstrap.min.css")}}" rel="stylesheet">
     <link href="{{url("/css/all.min.css")}}" rel="stylesheet">
     <link href="{{url("/css/style.css")}}" rel="stylesheet">
+    <link href="{{url("/css/tiny-slider.css")}}" rel="stylesheet">
+    <script src="{{url("/js/tiny-slider.js")}}" type="text/javascript"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">

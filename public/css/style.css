@@ -11,3 +11,7 @@ body {
     padding-top: 70px;
     padding-bottom: 70px;
 }
+img.img-thumbnail-product{
+    cursor: pointer;
+    max-width: 100px;
+}
