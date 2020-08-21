@@ -5,3 +5,9 @@ p.product-detail {
 .add-to-cart-form {
     max-width: 200px !important;
 }
+
+/*Space for navbar and footer*/
+body {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}

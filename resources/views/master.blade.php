@@ -9,13 +9,6 @@
     <link href="{{url("/css/bootstrap.min.css")}}" rel="stylesheet">
     <link href="{{url("/css/all.min.css")}}" rel="stylesheet">
     <link href="{{url("/css/style.css")}}" rel="stylesheet">
-    <style>
-        body {
-            padding-top: 70px;
-            /*Para la barra inferior fija*/
-            padding-bottom: 70px;
-        }
-    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
