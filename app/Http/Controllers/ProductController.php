@@ -12,6 +12,13 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
+
+    private function getSlug($title)
+    {
+        $randomValue = uniqid();
+        return Str::of($title)->slug("-")->limit(255 - mb_strlen($randomValue) - 1, "")->trim("-")->append("-", $randomValue);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -46,8 +53,7 @@ class ProductController extends Controller
     public function store(StoreProduct $request)
     {
         $product = new Product($request->input());
-        $uniqid = uniqid();
-        $product->slug = Str::of($product->name)->slug("-")->limit(255 - mb_strlen($uniqid) - 1)->append("-", $uniqid);
+        $product->slug = $this->getSlug($product->name);
         $product->saveOrFail();
         $this->storePictures($request, $product->id);
         return redirect()->route("products.index")->with("message", __("messages.product_created"));
