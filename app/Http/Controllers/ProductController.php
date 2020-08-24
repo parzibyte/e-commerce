@@ -62,7 +62,18 @@ class ProductController extends Controller
     public function show(Request $request, string $slug)
     {
         $product = Product::where("slug", "=", $slug)->limit(1)->first();
-        return view("products.products_detail", ["product" => $product]);
+        $inCart = false;
+        $cart = [];
+        if (session("cart")) {
+            $cart = session("cart");
+        }
+        foreach ($cart as $cartProduct) {
+            if ($product->id === $cartProduct->id) {
+                $inCart = true;
+                break;
+            }
+        }
+        return view("products.products_detail", ["product" => $product, "inCart" => $inCart]);
     }
 
     /**

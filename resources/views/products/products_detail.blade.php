@@ -22,18 +22,24 @@
             <p class="product-detail">{{$product->description}}</p>
             <h1 class="display-3">${{number_format($product->price, 2)}} </h1>
             <h3 class="text-muted">{{$product->stock}} {{__("messages.available_count")}}</h3>
-            <form method="post" action="{{route("add_product_to_cart", ["product"=>$product])}}">
-                @csrf
-                <div class="input-group mb-3 add-to-cart-form">
-                    <input name="quantity" value="1" min="1" max="{{$product->stock}}" type="number"
-                           class="form-control"
-                           placeholder="{{__("messages.quantity")}}">
-                    <div class="input-group-append">
-                        <button class="btn btn-success" type="submit">{{__("messages.add_to_cart")}}&nbsp;<i
-                                class="fa fa-cart-plus"></i></button>
+            @if($inCart)
+                <button class="btn btn-success" readonly><i
+                        class="fa fa-check"></i>&nbsp;{{__('messages.already_added_to_cart')}}
+                </button>
+            @else
+                <form method="post" action="{{route("add_product_to_cart", ["product"=>$product])}}">
+                    @csrf
+                    <div class="input-group mb-3 add-to-cart-form">
+                        <input name="quantity" value="1" min="1" max="{{$product->stock}}" type="number"
+                               class="form-control"
+                               placeholder="{{__("messages.quantity")}}">
+                        <div class="input-group-append">
+                            <button class="btn btn-success" type="submit">{{__("messages.add_to_cart")}}&nbsp;<i
+                                    class="fa fa-cart-plus"></i></button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            @endif
         </div>
     </div>
     <script>

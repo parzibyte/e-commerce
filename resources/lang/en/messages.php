@@ -31,7 +31,8 @@ return [
     "filter" => "Filter",
     "details" => "Details",
     "add_to_cart" => "Add to cart",
-    "see_cart" => "See cart",
+    "see_cart" => "View cart",
     "available_count" => "Available",
     "quantity" => "Quantity",
+    "already_added_to_cart" => "Added to cart",
 ];
