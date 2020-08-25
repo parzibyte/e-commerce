@@ -21,4 +21,5 @@ Route::resource("product_pictures", "ProductPicturesController")->only(["destroy
 ]);
 Route::resource("store", "StoreController");
 Route::post("/add_product_to_cart/{product}", "StoreController@addToCart")->name("add_product_to_cart");
+Route::get("/cart", "StoreController@viewCart")->name("view_cart");
 Route::get("/{slug}", "ProductController@show")->name("product_detail");

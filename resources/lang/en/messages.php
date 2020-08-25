@@ -35,4 +35,11 @@ return [
     "available_count" => "Available",
     "quantity" => "Quantity",
     "already_added_to_cart" => "Added to cart",
+    "cart" => "Cart",
+    "subtotal" => "Subtotal",
+    "total" => "Total",
+    "checkout" => "Checkout",
+    "remove" => "Remove",
+    "empty_cart" => "Empty cart",
+    "view" => "View",
 ];

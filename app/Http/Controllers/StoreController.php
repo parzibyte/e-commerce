@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 class StoreController extends Controller
 {
 
+    public function viewCart(Request $request)
+    {
+        $cart = session("cart") ?? [];
+        return view("store.view_cart", ["cart" => $cart]);
+    }
+
     public function addToCart(Product $product, Request $request)
     {
         $cart = [];

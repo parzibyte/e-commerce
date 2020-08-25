@@ -35,7 +35,7 @@
         @if(session("cart"))
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="btn btn-success h2" href="{{route("store.index")}}">{{__("messages.see_cart")}}&nbsp;
+                    <a class="btn btn-success h2" href="{{route("view_cart")}}">{{__("messages.see_cart")}}&nbsp;
                         <span class="badge badge-light">{{count(session("cart"))}}</span>
                     </a>
                 </li>
