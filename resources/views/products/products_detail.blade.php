@@ -24,9 +24,10 @@
             <h1 class="display-3">${{number_format($product->price, 2)}} </h1>
             <h3 class="text-muted">{{$product->stock}} {{__("messages.available_count")}}</h3>
             @if($inCart)
-                <button class="btn btn-success" readonly><i
-                        class="fa fa-check"></i>&nbsp;{{__('messages.already_added_to_cart')}}
-                </button>
+                <h4 class="text-primary">
+                    <i class="fa fa-check"></i>&nbsp;{{__('messages.already_added_to_cart')}}
+                </h4>
+                <a class="btn btn-success" href="{{route("view_cart")}}">{{__("messages.see_cart")}}</a>
             @else
                 <form method="post" action="{{route("add_product_to_cart", ["product"=>$product])}}">
                     @csrf
