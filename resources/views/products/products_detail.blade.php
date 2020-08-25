@@ -35,7 +35,7 @@
                         <input name="quantity" value="1" min="1" max="{{$product->stock}}" type="number"
                                class="form-control"
                                placeholder="{{__("messages.quantity")}}">
-                        <div class="input-group-append">
+                        <div class="input-group-append" style="z-index: 0">
                             <button class="btn btn-success" type="submit">{{__("messages.add_to_cart")}}&nbsp;<i
                                     class="fa fa-cart-plus"></i></button>
                         </div>
