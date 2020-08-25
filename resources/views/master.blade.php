@@ -9,8 +9,11 @@
     <link href="{{url("/css/bootstrap.min.css")}}" rel="stylesheet">
     <link href="{{url("/css/all.min.css")}}" rel="stylesheet">
     <link href="{{url("/css/style.css")}}" rel="stylesheet">
+    <!-- These libraries are only for product details. Maybe we should load them only when the current page is product details? -->
     <link href="{{url("/css/tiny-slider.css")}}" rel="stylesheet">
     <script src="{{url("/js/tiny-slider.js")}}" type="text/javascript"></script>
+    <script src="{{url("/js/Drift.min.js")}}" type="text/javascript"></script>
+    <!-- These libraries are only for product details. Maybe we should load them only when the current page is product details? -->
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">

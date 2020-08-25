@@ -6,7 +6,8 @@
             <div id="slider">
                 @foreach($product->pictures as $picture)
                     <div>
-                        <img class="img-fluid" src="{{$picture->getPath()}}" alt="{{$product->name}} picture">
+                        <img data-zoom="{{$picture->getPath()}}" class="img-fluid img-product"
+                             src="{{$picture->getPath()}}" alt="{{$product->name}} picture">
                     </div>
                 @endforeach
             </div>
@@ -17,7 +18,7 @@
                 @endforeach
             </div>
         </div>
-        <div class="col-12 col-lg-7">
+        <div class="col-12 col-lg-7" id="product_details_container">
             <h1 class="display-4">{{$product->name}}</h1>
             <p class="product-detail">{{$product->description}}</p>
             <h1 class="display-3">${{number_format($product->price, 2)}} </h1>
@@ -43,21 +44,34 @@
         </div>
     </div>
     <script>
-        tns({
-            container: "#slider",
-            items: 1,
-            autoplay: true,
-            autoplayButton: false,
-            autoplayButtonOutput: false,
-            autoplayTimeout: 3000,
-            autoplayHoverPause: true,
-            navAsThumbnails: true,
-            autoWidth: true,
-            controls: false,
-            nav: true,
-            navContainer: "#thumbnails",
-            center: true,
-            speed: 1000,
+        document.addEventListener("DOMContentLoaded", () => {
+            // This is for the carousel/slider
+            tns({
+                container: "#slider",
+                items: 1,
+                autoplay: true,
+                autoplayButton: false,
+                autoplayButtonOutput: false,
+                autoplayTimeout: 3000,
+                autoplayHoverPause: true,
+                navAsThumbnails: true,
+                autoWidth: true,
+                controls: false,
+                nav: true,
+                navContainer: "#thumbnails",
+                center: true,
+                speed: 1000,
+            });
+            // And this is for the image zoom
+            const $images = document.querySelectorAll(".img-product"),
+                paneContainer = document.querySelector("#product_details_container");
+            $images.forEach($image => {
+                new Drift($image, {
+                    paneContainer: paneContainer,
+                    handleTouch: false,
+                });
+            });
         });
     </script>
+
 @endsection
