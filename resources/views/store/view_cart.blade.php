@@ -35,9 +35,10 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <form method="post" action="#">
+                                    <form method="post" action="{{route("remove_from_cart")}}">
                                         @csrf
                                         @method("DELETE")
+                                        <input type="hidden" name="index" value="{{$loop->index}}">
                                         <button class="btn btn-danger btn-confirm-action">
                                             <i class="fa fa-trash"></i>
                                         </button>
@@ -57,10 +58,23 @@
                                 class="fa fa-check"></i>&nbsp;{{__("messages.checkout")}}
                         </button>
                     </form>
-                    <form class="mt-2" action="">
+                    <form class="mt-2" action="{{route("empty_cart")}}" method="POST">
+                        @csrf
+                        @method("DELETE")
                         <button class="btn btn-danger btn-xs btn-confirm-action">{{__("messages.empty_cart")}}
                         </button>
                     </form>
+                </div>
+            </div>
+        @else
+            <div class="col-12">
+
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                        <h1 class="display-4">{{__("messages.cart_is_empty")}}</h1>
+                        <p class="lead">{{__("messages.explore_store_invitation")}}</p>
+                        <a href="{{route("store.index")}}" class="btn btn-lg btn-success">{{__("messages.explore_store")}}</a>
+                    </div>
                 </div>
             </div>
         @endif

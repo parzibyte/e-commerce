@@ -9,21 +9,43 @@ use Illuminate\Http\Request;
 class StoreController extends Controller
 {
 
+    private function saveCart($cart)
+    {
+        session(["cart" => $cart]);
+    }
+
+    private function getCart()
+    {
+        return session("cart") ?? [];
+    }
+
+    public function emptyCart()
+    {
+        $this->saveCart([]);
+        return redirect()->back()->with("message", __("messages.cart_empty"));
+    }
+
+    public function removeFromCart(Request $request)
+    {
+        $index = $request->input("index");
+        $cart = $this->getCart();
+        array_splice($cart, $index, 1);
+        $this->saveCart($cart);
+        return redirect()->back()->with("message", __("messages.removed_from_cart"));
+    }
+
     public function viewCart(Request $request)
     {
-        $cart = session("cart") ?? [];
+        $cart = $this->getCart();
         return view("store.view_cart", ["cart" => $cart]);
     }
 
     public function addToCart(Product $product, Request $request)
     {
-        $cart = [];
-        if (session("cart")) {
-            $cart = session("cart");
-        }
+        $cart = $this->getCart();
         $product->quantity = $request->post("quantity");
         array_push($cart, $product);
-        session(["cart" => $cart]);
+        $this->saveCart($cart);
         return redirect()->back()->with("message", __("messages.added_to_cart"));
     }
 

@@ -42,4 +42,9 @@ return [
     "remove" => "Remove",
     "empty_cart" => "Empty cart",
     "view" => "View",
+    "removed_from_cart" => "Removed from cart",
+    "cart_empty" => "Cart empty",
+    "cart_is_empty" => "The cart is empty",
+    "explore_store_invitation" => "You can explore the store, search and filter products you are interested in!",
+    "explore_store" => "Explore store",
 ];
