@@ -6,6 +6,8 @@ use App\Customer;
 use App\User;
 use http\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
 {
@@ -16,7 +18,12 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        # Just testing the data
+        $user = User::find(2);
+        $customerFromUser = $user->customer;
+        $customer = Customer::find(1);
+        $userFromCustomer = $customer->user;
+        return ["customer" => $customerFromUser, "user" => $userFromCustomer];
     }
 
     /**
@@ -32,21 +39,30 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $customer = new Customer($request->input());
+        # First we create the user
         $user = new User($request->input());
-        return $customer;
-        return $request->input();
+        # the hash
+        $user->password = Hash::make($request->input("password"));
+        # save it. Once saved, we have a fresh user instance
+        $user->saveOrFail();
+        # So we create the customer
+        $customer = new Customer($request->input());
+        $customer->user_id = $user->id;
+        $customer->saveOrFail();
+//        TODO: login the user with something like
+//        Auth::loginUsingId();
+        return redirect()->back()->with("message", __("messages.customer_created_successfully"));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Customer  $customer
+     * @param \App\Customer $customer
      * @return \Illuminate\Http\Response
      */
     public function show(Customer $customer)
@@ -57,7 +73,7 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Customer  $customer
+     * @param \App\Customer $customer
      * @return \Illuminate\Http\Response
      */
     public function edit(Customer $customer)
@@ -68,8 +84,8 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Customer  $customer
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Customer $customer
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Customer $customer)
@@ -80,7 +96,7 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Customer  $customer
+     * @param \App\Customer $customer
      * @return \Illuminate\Http\Response
      */
     public function destroy(Customer $customer)
