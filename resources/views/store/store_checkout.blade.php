@@ -23,11 +23,12 @@
                 <textarea name="address" id="address" rows="5" class="form-control w-auto" required
                           placeholder="{{__("messages.address")}}"></textarea>
                 <label for="password">{{__("messages.password")}}</label>
-                <input class="form-control w-auto" id="password" type="password" name=password" required
+                <input class="form-control w-auto" id="password" type="password" name="password" required
                        placeholder="{{__("messages.password")}}">
 
                 <label for="password_confirm">{{__("messages.password_confirm")}}</label>
-                <input class="form-control w-auto" id="password_confirm" type="password" name=password_confirm" required
+                <input class="form-control w-auto" id="password_confirm" type="password" name="password_confirm"
+                       required
                        placeholder="{{__("messages.password_confirm")}}">
                 <button class="btn btn-success mt-2" type="submit">{{__("messages.register")}}</button>
             </form>
