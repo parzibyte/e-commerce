@@ -25,4 +25,5 @@ Route::get("/cart", "StoreController@viewCart")->name("view_cart");
 Route::delete("/remove_from_cart", "StoreController@removeFromCart")->name("remove_from_cart");
 Route::delete("/empty_cart", "StoreController@emptyCart")->name("empty_cart");
 Route::get("/checkout", "StoreController@checkout")->name("checkout");
+Route::resource("customers", "CustomerController");
 Route::get("/{slug}", "ProductController@show")->name("product_detail");

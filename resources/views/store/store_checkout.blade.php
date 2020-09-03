@@ -8,7 +8,9 @@
         <div class="col-12 col-md-6">Already have an account?</div>
         <div class="col-12 col-md-6">
             <h2>{{__("messages.register")}}</h2>
-            <form action="">
+            <form action="{{route("customers.store")}}" method="post">
+                @csrf
+                @method("POST")
                 <label for="name">{{__("messages.name")}}</label>
                 <input class="form-control w-auto" id="name" type="text" name="name" required
                        placeholder="{{__("messages.name")}}">
@@ -17,6 +19,9 @@
                 <input class="form-control w-auto" id="email" type="email" name="email" required
                        placeholder="{{__("messages.email")}}">
 
+                <label for="address">{{__("messages.address")}}</label>
+                <textarea name="address" id="address" rows="5" class="form-control w-auto" required
+                          placeholder="{{__("messages.address")}}"></textarea>
                 <label for="password">{{__("messages.password")}}</label>
                 <input class="form-control w-auto" id="password" type="password" name=password" required
                        placeholder="{{__("messages.password")}}">

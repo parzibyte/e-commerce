@@ -51,4 +51,5 @@ return [
     "email" => "Email",
     "password" => "Password",
     "password_confirm" => "Confirm password",
+    "address" => "Address",
 ];
