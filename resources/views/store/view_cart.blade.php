@@ -53,11 +53,9 @@
 
                     </table>
                     <h2><small>{{__("messages.total")}}:</small> ${{number_format($total, 2)}}</h2>
-                    <form action="#">
-                        <button class="btn btn-success btn-lg"><i
-                                class="fa fa-check"></i>&nbsp;{{__("messages.checkout")}}
-                        </button>
-                    </form>
+                    <a href="{{route("checkout")}}" class="btn btn-success btn-lg"><i
+                            class="fa fa-check"></i>&nbsp;{{__("messages.checkout")}}
+                    </a>
                     <form class="mt-2" action="{{route("empty_cart")}}" method="POST">
                         @csrf
                         @method("DELETE")
@@ -73,7 +71,8 @@
                     <div class="container">
                         <h1 class="display-4">{{__("messages.cart_is_empty")}}</h1>
                         <p class="lead">{{__("messages.explore_store_invitation")}}</p>
-                        <a href="{{route("store.index")}}" class="btn btn-lg btn-success">{{__("messages.explore_store")}}</a>
+                        <a href="{{route("store.index")}}"
+                           class="btn btn-lg btn-success">{{__("messages.explore_store")}}</a>
                     </div>
                 </div>
             </div>

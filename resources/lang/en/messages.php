@@ -47,4 +47,8 @@ return [
     "cart_is_empty" => "The cart is empty",
     "explore_store_invitation" => "You can explore the store, search and filter products you are interested in!",
     "explore_store" => "Explore store",
+    "register" => "Register",
+    "email" => "Email",
+    "password" => "Password",
+    "password_confirm" => "Confirm password",
 ];

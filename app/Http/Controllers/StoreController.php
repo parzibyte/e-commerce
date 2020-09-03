@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 class StoreController extends Controller
 {
 
+    public function checkout(Request $request)
+    {
+        return view("store.store_checkout");
+    }
+
     private function saveCart($cart)
     {
         session(["cart" => $cart]);
