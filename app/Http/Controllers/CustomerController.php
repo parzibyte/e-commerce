@@ -54,9 +54,8 @@ class CustomerController extends Controller
         $customer = new Customer($request->input());
         $customer->user_id = $user->id;
         $customer->saveOrFail();
-//        TODO: login the user with something like
-//        Auth::loginUsingId();
-        return redirect()->back()->with("message", __("messages.customer_created_successfully"));
+        Auth::loginUsingId($user->id);
+        return redirect()->intended("store.index");
     }
 
     /**

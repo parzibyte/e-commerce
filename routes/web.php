@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,8 @@ Route::post("/add_product_to_cart/{product}", "StoreController@addToCart")->name
 Route::get("/cart", "StoreController@viewCart")->name("view_cart");
 Route::delete("/remove_from_cart", "StoreController@removeFromCart")->name("remove_from_cart");
 Route::delete("/empty_cart", "StoreController@emptyCart")->name("empty_cart");
-Route::get("/checkout", "StoreController@checkout")->name("checkout");
+Route::get("/checkout", "StoreController@checkout")->name("checkout")->middleware("check_customer_logged_in");
 Route::resource("customers", "CustomerController");
+Route::get("customer_auth", "StoreController@authenticateCustomer")->name("authenticate_customer");
+Auth::routes();
 Route::get("/{slug}", "ProductController@show")->name("product_detail");

@@ -68,6 +68,9 @@ class ProductController extends Controller
     public function show(Request $request, string $slug)
     {
         $product = Product::where("slug", "=", $slug)->limit(1)->first();
+        if (!$product) {
+            return redirect()->back()->with("message", __("messages.product_not_found"));
+        }
         $inCart = false;
         $cart = [];
         if (session("cart")) {

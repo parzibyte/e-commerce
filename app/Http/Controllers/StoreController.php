@@ -9,9 +9,13 @@ use Illuminate\Http\Request;
 class StoreController extends Controller
 {
 
+    public function authenticateCustomer(){
+        return view("store.authenticate_customer");
+    }
+
     public function checkout(Request $request)
     {
-        return view("store.store_checkout");
+        return "Llegaste al checkout";
     }
 
     private function saveCart($cart)

@@ -52,4 +52,8 @@ return [
     "password" => "Password",
     "password_confirm" => "Confirm password",
     "address" => "Address",
+    "already_have_account" => "Already have an account? Login",
+    "login" => "Login",
+    "product_not_found" => "Product not found",
+    "logout" => "Logout",
 ];

@@ -35,15 +35,27 @@
                 <a class="nav-link" href="{{route("store.index")}}">{{__("messages.store")}}</a>
             </li>
         </ul>
-        @if(session("cart"))
-            <ul class="navbar-nav">
+        <ul class="navbar-nav">
+            @if(session("cart"))
                 <li class="nav-item">
                     <a class="btn btn-success h2" href="{{route("view_cart")}}">{{__("messages.see_cart")}}&nbsp;
                         <span class="badge badge-light">{{count(session("cart"))}}</span>
                     </a>
                 </li>
-            </ul>
-        @endif
+            @endif
+            @auth
+                <li class="nav-item">
+                    <form method="post" action="{{route("logout")}}">
+                        @csrf
+                        @method("POST")
+                        <button class="btn btn-warning ml-1 btn-confirm-action"
+                                type="submit">{{__("messages.logout")}} ({{Auth::user()->email}})
+                        </button>
+                    </form>
+                </li>
+            @endauth
+        </ul>
+
     </div>
 </nav>
 <script type="text/javascript">
